@@ -4,11 +4,10 @@ const router = express.Router();
 const Axios = require("axios");
 const cheerio = require('cheerio');
 
-/* GET home page. */
-router.get('/', async (req, res, next) => {
+router.get('/search', async (req, res, next) => {
   let {keyword, url} = req.query;
   let posArray = [];
-  for(var i=0; i<3; i++){ // this should have been 10 for the first 100 results, but it may take too long
+  for(var i=0; i<10; i++){ // this should have been 10 for the first 100 results, but it may take too long
     await sleep(random(2,5)*1000); // pause for random time (between 2 to 5) so that google doesnt block you for DOS
     await search(keyword.replace(/ /gi, '+'), url, i, posArray);
   }
